@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cerveza</title>
+    <link rel="stylesheet" href="bootstrap.css"></link>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="bootstrap-responsive.css"></link>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+  <script src="roulette.js"></script>
+  <script src="demo.js"></script>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head> 
+
+  <body id="body" style="overflow: hidden;">
+    <link
+      href="https://fonts.googleapis.com/css?family=Prompt:400,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <div id="bubbles">
+        <div class="bubble x1"></div>
+        <div class="bubble x2"></div>
+        <div class="bubble x3"></div>
+        <div class="bubble x4"></div>
+        <div class="bubble x5"></div>
+        <div class="bubble x6"></div>
+        <div class="bubble x7"></div>
+        <div class="bubble x8"></div>
+        <div class="bubble x9"></div>
+        <div class="bubble x10"></div>
+        <div class="bubble x11"></div>
+        <div class="bubble x12"></div>
+        <div class="bubble x13"></div>
+        <div class="bubble x14"></div>
+        <div class="bubble x15"></div>
+      </div>
+      <div class="top-bubbles"></div>
+      <div class="top-bubbles2"></div>
+          <div class="loader "></div>
+    <div class="homero"></div>
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                $(".loader").fadeOut()
+
+            },1000)
+      });
+      </script>
+<style>
+    .hiddenl {
+    animation: fadeOut 1s;
+    animation-fill-mode: forwards;
+}
+.loader {
+    position: fixed;
+    z-index: 2500;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #212121 url(hhhh.gif) no-repeat center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    .homero{
+        background: url('./homero.png');
+        width:500px;
+        height:800px;
+        opacity: 0.2;
+        background-position: bottom;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+        z-index: 1;
+    }
+</style>
+
+    <div id="container" style="display: flex;">
+      <h1>BEBER O NO BEBER?</h1>
+      <div class="btn-cont">
+        <h3 class="frase" id="titulo" style="display: none"></h3>
+        <button class="btn-beber  button perspective red" onclick="beber()"></button>
+      </div>
+    </div>
+    <script>
+        var blur = 0;
+        function beber() {
+            var elem = document.getElementById('body');
+            blur += 1;
+            elem.classList.add("blurClass"+blur);
+        }
+    </script>
+    <script>
+        var json = JSON.parse(`{
+  "LUNES": [
+    "mmmm es muy lun.. ndeah si tomate una birra",
+    "seguis quebrado de la gira del finde? tomate un birralikal",
+    "“La cerveza te hace sentir como te deberías sentir sin cerveza” - El Piti",
+    "a laburar que el BEBER me llama!",
+    "cuidemos el agua, tomemos cerveza",
+    "conservemos el combustible, tomemos cerveza",
+    "la semana esta en pañales, tenes toda una birra por delante",
+    "hace falta birra mas fria que abrazo de suegra",
+    "muy lunes, deberias BEER que onda..",
+    "a laburar que la cerveza no la regalan"
+
+  ],
+  "MARTES": [
+    "dia de mierda, se toma birra para pasar la amargura",
+    "los vasos hasta el cielo y el perreo hasta el suelo - Mauricio Marci",
+    "dia duro como infancia en siria, birra para aliviar la carga",
+    "no hay BEER que por bien no venga",
+    "hace muchas cervezas que no tomas un martes, porq no?",
+    "para despejar la cabeza, hoy te invito una cerveza",
+    "1 glass of beer a day, keeps the doctor away",
+    "en casa de herrero... vaso de birra!",
+    "dime con quien andas y te dire que birra quieres",
+    "tomaste vitamina C(erveza) hoy ya? Deberias."
+  ],
+  "MIERCOLES": [
+    "universalmente reconocido como el dia para cortar la semana, la respuesta es obvia.",
+    "anda a cortar la semana, porque venis a pedir permiso aca che otario?",
+    "si estas consultado un miercoles, te kb la gorreada",
+    "y si hijo",
+    "cerveza mata galan",
+    "el agua moja, la cerveza alegra",
+    "miercoles sin birra = ir a mcdonalds a pedir una ensalada",
+    "a mal tiempo, buena birra",
+    "si hay cerveza, no hay tristeza"
+  ],
+  "JUEVES": [
+    "JUERNES DE BIRRA, HAPPY HOUR TODO EL DIA",
+    "falso viernes, se escabia como albañil recien cobrado",
+    "Si rotundo",
+    "Saint's Patricks day decis? Yo naci en Iran, re conozco ese feriado (mentira que era Irlandes el festejo)",
+    "el amor es a prueba de balas..PERO NO DE CERVEZA guiño guiño",
+    "flaco, hoy no la vas a poner asiq tomate una birra",
+    "all you need is BEER",
+    "alcohol you later (i'll call you later se lee manga de incultos)"
+  ],
+  "VIERNES": [
+    "mañana no hay clases, mañana no hay clases, mañana no hay clases(se re escabia para los poresitos q les cuesta)",
+    "hoy se bebe, hoy se escabia, como homero, en su casa",
+    "se sale fuerte y a la vuelta tu jermu te organizo vacaciones sorpresa",
+    "Si a todo",
+    "Todo comienza con una birrita y a casa",
+    "cer-besame",
+    "La cerveza es siempre la respuesta, hasta que olvides la pregunta. - El Comandante Fort",
+    "sos mayor de edad? SI, y sino TAMBIEN",
+    "la ultima y nos vamos - (no voy a decir quien soy)",
+    "a veces digo que deberia aflojar a la birra, pero veo que es viernes y se me pasa"
+  ],
+  "SABADO": [
+    "que carajo haces consultando un sabado? gorreado + 10",
+    "hoy se vuelve en ambulancia",
+    "es escabia fuerte, prohibido quebrar",
+    "SI REY",
+    "Por noches inolvidables con amigos que no vamos a recordar",
+    "fondo blanco(como tu hermana)",
+    "barril sin fin",
+    "tu hermana",
+    "tu vieja",
+    "Hola, sala de emergencias?",
+    "Dios, recurro a ti una vez mas"
+  ],
+  "DOMINGO": [
+    "en plena misa: La cerveza es la prueba de que Dios quiere que seamos felices -Benjamin Franklin",
+    "quebrado del sabado? birrita para pasar la resaca",
+    "queeeeeeee no pare, queeeeeeeee no pare (En honor a Fabian show)",
+    "quebrado de anoche? tomate un birralikal"
+  ]
+}`)
+                var d = new Date();
+                var key = ''
+                switch (d.getDay()) {
+                    case 0:
+                        key = 'DOMINGO'
+                        break;
+                    case 1:
+                        key = 'LUNES'
+                        break;
+                    case 2:
+                        key = 'MARTES'
+                        break;
+                    case 3:
+                        key = 'MIERCOLES'
+                        break;
+                    case 4:
+                        key = 'JUEVES'
+                        break;
+                    case 5:
+                        key = 'VIERNES'
+                        break;
+                    case 6:
+                        key = 'SABADO'
+                        break;
+                }
+                var strings = json[key];
+                const string_selected = Math.floor(Math.random() * strings.length);
+                document.getElementById("titulo").innerHTML = strings[string_selected];
+                $( "#titulo" ).fadeIn( "slow", function() {
+                });
+    </script>
+    <style>
+        *, *:before, *:after {
+  box-sizing: border-box;
+}
+.frase {
+    position: absolute;
+    margin-bottom: 150px;
+    font-family: "Prompt", sans-serif;
+    font-size: 3rem;
+    padding: 150px;
+    padding-top: 0;
+}
+h1 {
+  font-size: 40px;
+  line-height: 40px;
+  margin: 50px 0;
+  text-align: center;
+  color: #858585;
+}
+body {
+  font-family: helvetica neue, helvetica, arial, sans-serif;
+  font-weight: 200;
+}
+button {
+  position: relative;
+  background: transparent;
+  border: none;
+  outline: none;
+  display: block;
+  height: 120px;
+  width: 350px;
+  padding: 40px;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 100;
+  text-transform: uppercase;
+  margin: 0 auto;
+  border-radius: 10px;
+  top: 0;
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -ms-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+button.perspective {
+  -webkit-transform: perspective(500px) rotateX(35deg);
+}
+button.perspective:before {
+  content: 'BEBER!';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  background: #f25d30;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #f25d30 0%, #e03b00 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f25d30), color-stop(100%, #e03b00));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f25d30 0%, #e03b00 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f25d30 0%, #e03b00 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f25d30 0%, #e03b00 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #f25d30 0%, #e03b00 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f25d30', endColorstr='#e03b00',GradientType=0);
+  /* IE6-9 */
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+  box-shadow: inset 0 -2px 5px rgba(255, 255, 255, 0.3);
+}
+button.perspective:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  left: 4px;
+  height: 30px;
+  width: 342px;
+  background: #ba2500;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ba2500 0%, #9b3100 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ba2500), color-stop(100%, #9b3100));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ba2500 0%, #9b3100 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ba2500 0%, #9b3100 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #ba2500 0%, #9b3100 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #ba2500 0%, #9b3100 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ba2500', endColorstr='#9b3100',GradientType=0);
+  /* IE6-9 */
+  border-radius: 0 0 10px 10px;
+  -webkit-transform: perspective(500px) rotateX(-40deg);
+  box-shadow: inset 0 -2px 3px rgba(7, 7, 7, 0.5), 0 3px 2px -1px black;
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -ms-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+button.perspective:hover {
+  top: -6px;
+}
+button.perspective:hover:after {
+  height: 37px;
+  bottom: -26px;
+}
+button.perspective:active {
+  top: 0px;
+}
+button.perspective:active:after {
+  height: 30px;
+  bottom: -20px;
+}
+.btn-beber {
+    font-size: 50px;
+    padding: 50px;
+    margin-top: 100px;
+}
+.btn-cont, .ruleta-cont {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.blurClass1{
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
+}
+.blurClass2{
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+}
+.blurClass3{
+    -webkit-filter: blur(12px);
+    -moz-filter: blur(12px);
+    -o-filter: blur(12px);
+    -ms-filter: blur(12px);
+    filter: blur(12px);
+}
+.blurClass4{
+    -webkit-filter: blur(16px);
+    -moz-filter: blur(16px);
+    -o-filter: blur(16px);
+    -ms-filter: blur(16px);
+    filter: blur(16px);
+}
+.blurClass5{
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+}
+.blurClass5{
+    -webkit-filter: blur(24px);
+    -moz-filter: blur(24px);
+    -o-filter: blur(24px);
+    -ms-filter: blur(24px);
+    filter: blur(24px);
+}
+    </style>
+    <!-- <div class="row ruleta-cont">
+        <div class="span4">
+            <div class="roulette_container" >
+                <div class="roulette" style="display:none;">
+                    <img src="yes.png"/>
+                    <img src="no.png"/>
+                    <img src="no.png"/>
+                    <img src="no.png"/>
+                    <img src="no.png"/>
+                </div>
+            </div>
+            <div class="btn_container">
+                <p>
+                <button class="btn btn-large btn-primary start"> START </button>
+                </p>
+            </div>
+
+        </div>
+        <div class="span4" style="display: none">
+            <div class="right_container">
+                <p class="demo_label">Paramater</p>
+                <div class="speed_value param_label">
+                    <span class="param_name">speed :</span> <span class="speed_param"></span>
+                </div>
+                <div id="speed"> </div>
+                
+                <div class="duration_value param_label">
+                    <span class="param_name">duration :</span> <span class="duration_param"></span>
+                </div>
+                <div id="duration"> </div>
+                
+                <div class="stop_image_number_value param_label">
+                    <span class="param_name">stop image number :</span> <span class="stop_image_number_param"></span>
+                </div>
+                <input id="stopImageNumber" name="stopImageNumber"/>
+                <span class="image_sample">
+                    <img data-value="0"  src="star.png"/>
+                    <img data-value="1"  src="flower.png"/>
+                    <img data-value="2"  src="coin.png"/>
+                    <img data-value="3"  src="mshroom.png"/>
+                    <img data-value="4"  src="chomp.png"/>
+                    <img data-value="-1" src="random.png" title="random"/>
+                </span>
+            </div>
+            <div class="right_container code_container">
+                <p class="demo_label">Code</p>
+                <span class="label label-info" style>JavaScript</span>
+                    <pre>
+var option = {
+speed : <span class="speed_param"></span>,
+duration : <span class="duration_param"></span>,
+stopImageNumber : <span class="stop_image_number_param"></span>,
+startCallback : function() {
+console.log('start');
+},
+slowDownCallback : function() {
+console.log('slowDown');
+},
+stopCallback : function($stopElm) {
+console.log('stop');
+}
+}
+$('div.roulette').roulette(option);	
+                    </pre>
+                <span class="label label-info" style>HTML</span>
+                    <pre>
+
+&lt;div class="roulette" style="display:none;"&gt; 
+&lt;img src="http://example.com/star.png"/&gt;
+&lt;img src="http://example.com/flower.png"/&gt;
+&lt;img src="http://example.com/coin.png"/&gt;
+&lt;img src="http://example.com/mshroom.png"/&gt;
+&lt;img src="http://example.com/chomp.png"/&gt;
+&lt;/div&gt; 
+                    </pre>
+            </div>
+        </div>
+
+    </div> -->
+  </body>
+
+</html>
+
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Lato:700,900);
+
+  body {
+    background-color: #f2c025;
+    margin: 0;
+  }
+
+  #container {
+    height: calc(100vh - 120px);
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    top: 0px;
+  }
+
+  #container div {
+    position: absolute;
+  }
+
+  #top {
+    border-top: 0;
+    border-radius: 0 0 30px 30px;
+    height: 200px;
+  }
+
+  
+  /* Foam */
+
+  .beer-foam {
+    position: absolute;
+    bottom: 10px;
+    height: 180px;
+  }
+
+  .foam {
+    float: left;
+    position: absolute;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: #fefefe;
+  }
+  .foam-1 {
+    top: -30px;
+    left: -10px;
+  }
+  .foam-2 {
+    top: -35px;
+    left: 20px;
+  }
+  .foam-3 {
+    top: -25px;
+    left: 50px;
+  }
+  .foam-4 {
+    top: -35px;
+    left: 80px;
+  }
+  .foam-5 {
+    top: -30px;
+    left: 110px;
+  }
+  .foam-6 {
+    top: -20px;
+    left: 140px;
+  }
+  .foam-7 {
+    top: -30px;
+    left: 160px;
+  }
+  .foam-8 {
+    top: -30px;
+    left: 170px;
+  }
+  .foam-9 {
+    top: -35px;
+    left: 170px;
+  }
+  .foam-10 {
+    top: -25px;
+    left: 210px;
+  }
+  .foam-11 {
+    top: -35px;
+    left: 250px;
+  }
+  .foam-12 {
+    top: -30px;
+    left: 270px;
+  }
+  .foam-13 {
+    top: -20px;
+    left: 300px;
+  }
+  .foam-14 {
+    top: -30px;
+    left: 340px;
+  }
+  .foam-15 {
+    top: -30px;
+    left: 385px;
+  }
+  .foam-16 {
+    top: -30px;
+    left: 400px;
+  }
+  .foam-17 {
+    top: -35px;
+    left: 420px;
+  }
+  .foam-18 {
+    top: -25px;
+    left: 450px;
+  }
+  .foam-19 {
+    top: -35px;
+    left: 480px;
+  }
+  .foam-20 {
+    top: -30px;
+    left: 510px;
+  }
+  .foam-21 {
+    top: -20px;
+    left: 540px;
+  }
+  .foam-22 {
+    top: -30px;
+    left: 560px;
+  }
+  .foam-23 {
+    top: -30px;
+    left: 570px;
+  }
+  .foam-24 {
+    top: -35px;
+    left: 570px;
+  }
+  .foam-25 {
+    top: -25px;
+    left: 610px;
+  }
+  .foam-26 {
+    top: -35px;
+    left: 650px;
+  }
+  .foam-27 {
+    top: -30px;
+    left: 670px;
+  }
+  .foam-28 {
+    top: -20px;
+    left: 700px;
+  }
+  .foam-29 {
+    top: -30px;
+    left: 740px;
+  }
+  .foam-30 {
+    top: -30px;
+    left: 785px;
+  }
+
+  h1 {
+    color: #fff;
+    font-weight: 800;
+    z-index: 10000;
+    position: absolute;
+    margin-left: 2em;
+    font-family: "Prompt", sans-serif;
+    font-size: 6em;
+  }
+
+  h2 {
+    font-family: "Prompt", sans-serif;
+    font-size: 2em;
+    color: #0e83cd;
+    padding-top: 10px;
+  }
+
+  .parent {
+    padding: 0;
+    margin-top: -130px;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+  }
+
+  .child {
+    padding: 5px;
+    width: 400px;
+    height: 300px;
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 20px;
+  }
+</style>
+<style>
+
+
+    #bubbles { padding: 60px 0 }
+    .bubble {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 100%;
+    @include border-radius(50%);
+      position: absolute;
+    }
+
+    .x1 {
+    @include transform(scale(0.9));
+      opacity: 0.2;
+      -webkit-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      animation: moveclouds 15s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    }
+
+    .x2 {
+      left: 200px;
+    @include transform(scale(0.6));
+      opacity: 0.5;
+      -webkit-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+      -o-animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+      animation: moveclouds 25s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    }
+    .x3 {
+      left: 350px;
+    @include transform(scale(0.8));
+      opacity: 0.3;
+      -webkit-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      animation: moveclouds 20s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    }
+    .x4 {
+      left: 470px;
+      -webkit-transform: scale(0.75);
+      -moz-transform: scale(0.75);
+      transform: scale(0.75);
+      opacity: 0.35;
+      -webkit-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+      -o-animation: moveclouds 18s linear infinite, sideWays 2s ease-in-out infinite alternate;
+    }
+    .x5 {
+      left: 150px;
+      -webkit-transform: scale(0.8);
+      -moz-transform: scale(0.8);
+      transform: scale(0.8);
+      opacity: 0.3;
+      -webkit-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -o-animation: moveclouds 7s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    }
+    .x6 {
+      left: 600px;
+      -webkit-transform: scale(0.95);
+      -moz-transform: scale(0.95);
+      transform: scale(0.95);
+      opacity: 0.3;
+      -webkit-animation: moveclouds 6.1s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 6.1s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 6.1s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+    }
+    .x7 {
+      left: 653px;
+      -webkit-transform: scale(0.50);
+      -moz-transform: scale(0.50);
+      transform: scale(0.50);
+      opacity: 0.2;
+      -webkit-animation: moveclouds 6.1s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 6.1s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 6.1s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+    }
+    .x8 {
+      left: 800px;
+      -webkit-transform: scale(0.92);
+      -moz-transform: scale(0.92);
+      transform: scale(0.92);
+      opacity: 0.5;
+      -webkit-animation: moveclouds 11.3s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 11.3s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 11.3s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+    }
+    .x9 {
+      left: 1000px;
+      -webkit-transform: scale(0.60);
+      -moz-transform: scale(0.60);
+      transform: scale(0.60);
+      opacity: 0.5;
+      -webkit-animation: moveclouds 5.7s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 5.7s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 5.7s linear infinite, sideWays 1.4s ease-in-out infinite alternate;
+    }
+    .x10 {
+      left: 1200px;
+    @include transform(scale(0.9));
+      opacity: 0.2;
+      -webkit-animation: moveclouds 14.5s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 14.5s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 14.5s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      animation: moveclouds 14.5s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    }
+    @-webkit-keyframes moveclouds {
+      0% {
+        top: 1000px;
+      }
+      100% {
+        top: -500px;
+      }
+    }
+    .x11 {
+      left: 1350px;
+    @include transform(scale(0.6));
+      opacity: 0.2;
+      -webkit-animation: moveclouds 24.3s linear infinite, sideWays 5s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 24.3s linear infinite, sideWays 5s ease-in-out infinite alternate;
+      -o-animation: moveclouds 24.3s linear infinite, sideWays 5s ease-in-out infinite alternate;
+      animation: moveclouds 24.3s linear infinite, sideWays 5s ease-in-out infinite alternate;
+    }
+    .x12 {
+      left: 1400px;
+    @include transform(scale(0.8));
+      opacity: 0.4;
+      -webkit-animation: moveclouds 21s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 21s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      -o-animation: moveclouds 21s linear infinite, sideWays 4s ease-in-out infinite alternate;
+      animation: moveclouds 21s linear infinite, sideWays 4s ease-in-out infinite alternate;
+    }
+    .x13 {
+      left: 1500px;
+      -webkit-transform: scale(0.8);
+      -moz-transform: scale(0.8);
+      transform: scale(0.8);
+      opacity: 0.3;
+      -webkit-animation: moveclouds 4.1s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 4.1s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -o-animation: moveclouds 4.1s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    }
+    .x14 {
+      left: 1600px;
+      -webkit-transform: scale(0.71);
+      -moz-transform: scale(0.71);
+      transform: scale(0.71);
+      opacity: 0.4;
+      -webkit-animation: moveclouds 17.5s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 17.5s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -o-animation: moveclouds 17.5s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    }
+    .x15 {
+      left: 1650px;
+      -webkit-transform: scale(0.76);
+      -moz-transform: scale(0.76);
+      transform: scale(0.76);
+      opacity: 0.2;
+      -webkit-animation: moveclouds 18.5s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -moz-animation: moveclouds 18.5s linear infinite, sideWays 1s ease-in-out infinite alternate;
+      -o-animation: moveclouds 18.5s linear infinite, sideWays 1s ease-in-out infinite alternate;
+    }
+
+    @-webkit-keyframes sideWays {
+      0% {
+        margin-left:0px;
+      }
+      100% {
+        margin-left:50px;
+      }
+    }
+
+    .top-bubbles{
+    background: url(./bgbeer.png);
+    width: 100%;
+    height: 115px;
+    opacity: 1;
+    background-size: contain;
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+  }.top-bubbles2{
+       background: url(./bgbeer.png);
+       width: 100%;
+       height: 115px;
+       opacity: 1;
+       background-size: contain;
+       position: fixed;
+       top: 0px;
+    left:10px;
+       z-index: 100;
+     }
+  </style>
